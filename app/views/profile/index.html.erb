@@ -7,3 +7,19 @@
 <%= @public_key %>
 <br>
 <%= button_to "Sign in with Insta", user_instagram_basic_omniauth_authorize_path, data: {turbo: "false"} %>
+
+<% if @links.length != 0 %>
+    <% @links.each do |link| %>
+    <%= link.type %>
+    <br>
+    <%= link.username %>
+    <br>
+    <%= link.media_count %>
+    <br>
+    <br>
+    <br>
+    <% end %>
+<% else %>
+    <h2>No linked accounts for this user yet</h2>
+    <p>Link one today!</p>
+<% end %>
