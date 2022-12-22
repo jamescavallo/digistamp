@@ -1,0 +1,27 @@
+<h2>Vouches</h2>
+<%= @user.email %>
+<br>
+<h4>Reputation</h4>
+<%= @user.reputation %>
+<br>
+<h4>Total Following across all accounts:</h4>
+<%= @user.following %>
+<br>
+<h4>Total accounts linked:</h4>
+<%= @user.accounts %>
+<br>
+<%= @user.public_key %>
+<% if @vouches.length != 0 %>
+    <% @vouches.each do |vouch| %>
+    <%= vouch.from %>
+    <br>
+    <%= vouch.signature %>
+    <br>
+    <%= vouch.description %>
+    <br>
+    <br>
+    <br>
+    <% end %>
+<% else %>
+    <h2>No vouches for this user yet</h2>
+<% end %>

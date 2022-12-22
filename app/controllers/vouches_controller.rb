@@ -1,0 +1,2 @@
+class VouchesController < ApplicationController
+end
