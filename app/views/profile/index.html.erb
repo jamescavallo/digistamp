@@ -8,13 +8,13 @@
 <br>
 <%= button_to "Sign in with Insta", user_instagram_basic_omniauth_authorize_path, data: {turbo: "false"} %>
 
-<% if @links.length != 0 %>
-    <% @links.each do |link| %>
-    <%= link.type %>
+<% if @accounts.length != 0 %>
+    <% @accounts.each do |account| %>
+    <%= account.account_type %>
     <br>
-    <%= link.username %>
+    <%= account.username %>
     <br>
-    <%= link.media_count %>
+    <%= account.media_count %>
     <br>
     <br>
     <br>

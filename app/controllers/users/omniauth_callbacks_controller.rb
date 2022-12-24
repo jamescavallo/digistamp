@@ -5,8 +5,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def instagram_basic
     if user_signed_in?
         auth_data = request.env["omniauth.auth"]
-        link = Link.new(account_username: auth_data["info"]["username"], account_id: auth_data["info"]["id"], media_count: auth_data["info"]["media_count"], type: "Instagram")
-        current_user.links << link
+        account = Account.new(account_username: auth_data["info"]["username"], account_id: auth_data["info"]["id"], media_count: auth_data["info"]["media_count"], type: "Instagram")
+        current_user.accounts << account
     else
         @user = User.from_omniauth(request.env["omniauth.auth"])
         if @user.persisted?

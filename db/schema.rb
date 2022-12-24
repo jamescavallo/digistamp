@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_22_190314) do
-  create_table "links", force: :cascade do |t|
-    t.string "account_username"
-    t.string "account_id"
+ActiveRecord::Schema[7.0].define(version: 2022_12_24_001556) do
+  create_table "accounts", force: :cascade do |t|
+    t.string "account_type"
+    t.text "account_username"
+    t.text "account_id"
     t.integer "media_count"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
-    t.string "type"
-    t.index ["user_id"], name: "index_links_on_user_id"
+    t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -35,7 +35,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_22_190314) do
     t.datetime "remember_created_at"
     t.integer "reputation"
     t.integer "following"
-    t.integer "accounts"
+    t.integer "account_num"
     t.string "instagram_basic"
     t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -52,6 +52,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_22_190314) do
     t.index ["user_id"], name: "index_vouches_on_user_id"
   end
 
-  add_foreign_key "links", "users"
+  add_foreign_key "accounts", "users"
   add_foreign_key "vouches", "users"
 end

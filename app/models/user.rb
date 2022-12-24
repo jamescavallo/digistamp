@@ -4,7 +4,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :vouches
-  has_many :links
+  has_many :accounts
 
   devise :omniauthable, omniauth_providers: %i[instagram_basic]
   devise :database_authenticatable, :registerable,
@@ -15,7 +15,7 @@ class User < ApplicationRecord
         user.public_key = rsa_key.public_key.to_s
         user.reputation = 0
         user.following = 0
-        user.accounts = 0
+        user.account_num = 0
         user.save
     end
 
