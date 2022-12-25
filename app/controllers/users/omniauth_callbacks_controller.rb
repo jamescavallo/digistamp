@@ -9,7 +9,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         logger.debug(auth_data)
         account = Account.new(account_username: auth_data.info.username, account_id: auth_data.info.id, media_count: auth_data.info.media_count, account_type: "Instagram")
         current_user.accounts << account
-        render "profile/index"
+        redirect_to profile_path
     else
         @user = User.from_omniauth(request.env["omniauth.auth"])
         if @user.persisted?
