@@ -5,14 +5,15 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def instagram_basic
     if user_signed_in?
         auth_data = request.env["omniauth.auth"]
-        puts "here22", auth_data.to_s
-        account = Account.new(account_username: auth_data["info"]["username"], account_id: auth_data["info"]["id"], media_count: auth_data["info"]["media_count"], account_type: "Instagram")
+        logger.debug("HERE")
+        logger.debug(auth_data)
+        account = Account.new(account_username: auth_data.info.username, account_id: auth_data.info.id, media_count: auth_data.info.media_count, account_type: "Instagram")
         current_user.accounts << account
     else
         @user = User.from_omniauth(request.env["omniauth.auth"])
         if @user.persisted?
             sign_in_and_redirect @user, event: :authentication # this will throw if @user is not activated
-            set_flash_message(:notice, :success, kind: "Facebook") if is_navigational_format?
+            set_flash_message(:notice, :success, kind: "Instagram") if is_navigational_format?
         else
             session["devise.instagram_data"] = request.env["omniauth.auth"].except(:extra) # Removing extra as it can overflow some session stores
             redirect_to new_user_registration_url
