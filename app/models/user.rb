@@ -6,10 +6,14 @@ class User < ApplicationRecord
   has_many :vouches
   has_many :accounts
 
+  validates :username, presence: true, length: { minimum: 3 }, allow_nil: false
+  validates :email, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i }, allow_nil: false
+  validates :password, presence: true, length: { minimum: 8 }, confirmation: true, allow_nil: false
+
   devise :omniauthable, omniauth_providers: %i[instagram_basic]
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-    after_initialize do |user|
+ '''   after_initialize do |user|
         rsa_key = OpenSSL::PKey::RSA.new(2048)
         user.private_key = rsa_key.to_s
         user.public_key = rsa_key.public_key.to_s
@@ -17,7 +21,7 @@ class User < ApplicationRecord
         user.following = 0
         user.account_num = 0
         user.save
-    end
+    end'''
 
     def sign(message)
         private_key = OpenSSL::PKey::RSA.new(self.private_key)

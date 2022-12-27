@@ -1,29 +1,65 @@
-<h2>Sign up</h2>
+<link rel="stylesheet" href="/assets/stylesheets/signup.css" id="theme-color">
+<%= render partial: "layouts/header" %> 
+<br>
+<br>
+<br>
+<br>
+<body> 
+  <section class="py-7 bg-dark section-angle top-right bottom-right">
+    <div class="container">
+         <div class="row">
+            <div class="col-md-6 mx-auto text-center">
+                <h2 class="text-white heading-black">Sign Up.</h2>
+                <p class="text-light lead">We promise this won't take long</p>
+                <br>
+                <%= image_tag "sign-up.png", height: 90, width: 90 %>
+                <br>
+            </div>
+    </div>
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-6">
+            <div >
+                <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), inline_errors: true) do |f| %>
+                    <%= render "devise/shared/error_messages", resource: resource %>
+                    <div class="field">
+                      <%= f.text_field :username, label_class: "text-light lead", help: 'Usernames must be longer than 3 characters'%>
+                    </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+                    <div class="field">
+                      <%= f.email_field :email, label_class: "text-light lead"%>
+                    </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+                    <div class="field">
+                      <%= f.password_field :password, autocomplete: "new-password", help: 'Please include at least one number, letter and special character', label_class: "text-light lead" %>
+                    </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+                    <div class="field">
+                      <%= f.password_field :password_confirmation, autocomplete: "new-password", label_class: "text-light lead" %>
+                    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+                    <div class="actions">
+                      <%= f.submit "Sign up" %>
+                    </div>
+                  <% end %>
+                  <br>
+                  <br>
+            </div>
+      </div>
+      <div class="container">
+         <div class="row">
+            <div class="col-md-6 mx-auto text-center">
+                <br>
+                <div class = "col-md-6 mx-auto text-center">
+                        <p class="text-light lead">Already have an account?</p>
+                        <%= link_to "Sign In", new_user_session_path, class: "btn btn-primary d-inline-flex flex-row align-items-center" %>
+                  </div>
+            </div>
+    </div>
+    
+  </section>
+</body>
+<footer>
+  <%= render partial: "layouts/footer" %> 
+</footer>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
 
-<%= render "devise/shared/links" %>

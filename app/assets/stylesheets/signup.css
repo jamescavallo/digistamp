@@ -1,0 +1,12 @@
+.field{
+    position: relative;
+    width: auto;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.signupimage{
+    position: relative;
+    height: 40px;
+    width: 40px;
+}
