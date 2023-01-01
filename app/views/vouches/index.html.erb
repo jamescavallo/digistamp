@@ -1,0 +1,17 @@
+<head>
+    <%= stylesheet_link_tag 'vouches' %>
+</head>
+<header>
+    <%= render partial: "layouts/header" %> 
+</header>
+<body id = "body_style">
+    <h2>Vouches</h2>
+    <% @vouches.each do |vouch|%>
+        <%= render partial: "layouts/vouch_card", locals: { vouch: vouch } %> 
+    <% end %>
+</body>
+
+
+<footer>
+    <%= render partial: "layouts/footer" %> 
+</footer>

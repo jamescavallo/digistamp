@@ -4,8 +4,6 @@ class UsersController < ApplicationController
     end
 
     def show
-        user_id = params[:id]
-        @user = User.find(user_id)
-        @vouches = @user.vouches.all
+        @user = User.find_by(username: params[:username])
     end
 end

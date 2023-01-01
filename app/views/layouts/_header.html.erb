@@ -41,13 +41,13 @@
                         </li>
                     <% else %>
                         <li class="nav-item">
-                            <a class="nav-link page-scroll" href="#features">Profile</a>
+                            <a class="nav-link page-scroll" href="#features">Explore</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link page-scroll" href="#pricing">My Vouches</a>
+                            <%= link_to "My Vouches", user_vouches_path(current_user.id), class: "nav-link page-scroll" %>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link page-scroll" href="#faq">Explore</a>
+                            <%= link_to "Profile", profile_path, class: "nav-link page-scroll" %>
                         </li>
                     <% end %>
                 </ul>

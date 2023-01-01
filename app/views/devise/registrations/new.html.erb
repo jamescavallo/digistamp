@@ -20,7 +20,7 @@
           <div class="col-md-6">
             <div >
                 <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), inline_errors: true) do |f| %>
-                    <%= render "devise/shared/error_messages", resource: resource %>
+
                     <div class="field">
                       <%= f.text_field :username, label_class: "text-light lead", help: 'Usernames must be longer than 3 characters'%>
                     </div>

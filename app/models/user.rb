@@ -13,7 +13,7 @@ class User < ApplicationRecord
   devise :omniauthable, omniauth_providers: %i[instagram_basic]
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
- '''   after_initialize do |user|
+    '''after_initialize do |user|
         rsa_key = OpenSSL::PKey::RSA.new(2048)
         user.private_key = rsa_key.to_s
         user.public_key = rsa_key.public_key.to_s

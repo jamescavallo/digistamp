@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-   before_action :configure_sign_up_params, only: [:create]
-   before_action :configure_account_update_params, only: [:update]
+   #before_action :configure_sign_up_params, only: [:create]
+   #before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
    def new
@@ -11,8 +11,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    debugger
-   end
+    @user = User.new(create_params)
+    if @user.save
+      flash[:notice] = "Sign Up Sucessful"
+      redirect_to profile_path
+    else
+      flash[:warning] = "User couldn't be created" 
+      render 'new'
+    end
+  end
 
   # GET /resource/edit
    def edit
@@ -21,12 +28,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
    def update
-  #   super
+    super
    end
 
   # DELETE /resource
    def destroy
-  #   super
+    super
    end
 
   # GET /resource/cancel
@@ -38,6 +45,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+  private
+
+  def create_params
+    params.require(:user).permit(:username, :email, :password, :password_confirmation) # plus any other fields
+  end
+  
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.

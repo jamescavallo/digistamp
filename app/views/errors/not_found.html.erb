@@ -1,0 +1,21 @@
+<header>
+  <%= render partial: "layouts/header" %> 
+</header>
+<body>
+    <section class="py-7 py-md-0 bg-hero" id="home">
+        <div class="container">
+            <div class="row vh-md-100">
+                <div class="col-md-8 col-sm-10 col-12 mx-auto my-auto text-center">
+                    <h1 class="heading-black text-capitalize">We couldn't find what you were looking for...</h1>
+                    <br>
+                    <br>
+                    <%= link_to "Return Home", root_path, class: "btn btn-primary d-inline-flex flex-row align-items-center" %>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+<footer>
+  <%= render partial: "layouts/footer" %> 
+</footer>

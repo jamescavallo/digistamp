@@ -1,25 +1,27 @@
-<h1>My Profile</h1>
-<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-<%= link_to "See All Users", users_path, :method => :get %>
-<br>
-<%= @email %>
-<br>
-<%= @public_key %>
-<br>
-<%= button_to "Sign in with Insta", user_instagram_basic_omniauth_authorize_path, data: {turbo: "false"} %>
+<head>
+    <%= stylesheet_link_tag 'linked_card', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'profile_card', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<header>
+  <%= render partial: "layouts/header" %> 
+</header>
 
-<% if @accounts.length != 0 %>
-    <% @accounts.each do |account| %>
-    <%= account.account_type %>
-    <br>
-    <%= account.account_username %>
-    <br>
-    <%= account.media_count %>
+<body class = "profile_main_body">
+    <%= render partial: "layouts/profile_card" %>
     <br>
     <br>
-    <br>
-    <% end %>
-<% else %>
-    <h2>No linked accounts for this user yet</h2>
-    <p>Link one today!</p>
-<% end %>
+
+    <div class="container">
+        <div class="row">
+            <%= render partial: "layouts/linked_card" %>
+            <%= render partial: "layouts/linked_card" %> 
+        </div>
+    </div>
+
+  <br>
+</body>
+
+<footer>
+  <%= render partial: "layouts/footer" %> 
+</footer>

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     authenticated :user do
-      root 'users#index', as: :authenticated_root
+      root 'profile#index', as: :authenticated_root
     end
   
     unauthenticated do
@@ -17,5 +17,10 @@ Rails.application.routes.draw do
   end
 
   get '/profile', to: 'profile#index'
+
+  get '/:username', to: 'users#show', as: 'user_profile', constraints: ->(request) { User.exists?(username: request.params[:username]) }
+
+  # Catch-all route
+  match '*path', to: 'errors#not_found', via: :all
 
 end
